@@ -5,4 +5,4 @@ Always check the commands, and see if they don't pull and execute more code, lik
 
 # This wil start a program on you machine from powershell.
  
-powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/WM.ps1') | Out-File $env:TEMP\MouseWiggler.ps1; . $env:TEMP\MouseWiggler.ps1; WiggleMouse"
+```powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/WM.ps1') | Out-File $env:TEMP\MouseWiggler.ps1; . $env:TEMP\MouseWiggler.ps1; WiggleMouse"```
