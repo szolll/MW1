@@ -1,6 +1,7 @@
-# RUN MW1
+# RUN Powershell cmd that runs a powershell on git in this case MW1
 
 # Dont run commands from people you don't know or trust!
+
 Always check the commands, and see if they don't pull and execute more code, like in the example below
 
 # This wil start a program on you machine from powershell.
