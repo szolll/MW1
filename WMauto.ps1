@@ -16,13 +16,13 @@ public class Mouse {
 Add-Type -AssemblyName System.Windows.Forms
 
 function Show-Menu {
-    Write-Host "Mouse Control Menu:"
+    Write-Host "WM Control Menu:"
     Write-Host "1. Move to position"
     Write-Host "2. Left click"
     Write-Host "3. Right click"
     Write-Host "4. Scroll"
     Write-Host "5. Draw square"
-    Write-Host "6. Wiggle mode (prevents screen lock, press Ctrl+C to stop)"
+    Write-Host "6. Main mode (press Ctrl+C to stop)"
     Write-Host "7. Exit"
     $choice = Read-Host "Select an option (1-7)"
     return $choice
@@ -84,9 +84,9 @@ function Wiggle-Mouse {
                 Start-Sleep -Milliseconds 1000
                 [System.Windows.Forms.SendKeys]::SendWait("{F15}")
             }
-            Write-Host "Wiggle complete."
+            Write-Host "WM complete."
         } catch [System.Management.Automation.PSInvalidOperationException] {
-            Write-Host "Wiggle stopped by user."
+            Write-Host "WM stopped by user."
             [void][Mouse]::SetCursorPos($initialPos.X, $initialPos.Y)
         }
     } catch {
