@@ -76,16 +76,12 @@ function Wiggle-Mouse {
         Write-Host "Wiggling mouse to prevent screen lock (Ctrl+C to stop)..."
         try {
             while ((Get-Date) -lt $endTime) {
-                $currentPos = [System.Windows.Forms.Cursor]::Position
-                $newX = if ($currentPos.X + 1 -ge $screen.Width) { $currentPos.X - 1 } else { $currentPos.X + 1 }
-                [void][Mouse]::SetCursorPos($newX, $currentPos.Y)
+                $newX = [Math]::Min([Math]::Max($initialPos.X + 30, 0), $screen.Width - 1)
+                $newY = [Math]::Min([Math]::Max($initialPos.Y + 30, 0), $screen.Height - 1)
+                [void][Mouse]::SetCursorPos($newX, $newY)
                 Start-Sleep -Milliseconds 1000
-
-                $currentPos = [System.Windows.Forms.Cursor]::Position
-                $newX = if ($currentPos.X - 1 -lt 0) { $currentPos.X + 1 } else { $currentPos.X - 1 }
-                [void][Mouse]::SetCursorPos($newX, $currentPos.Y)
+                [void][Mouse]::SetCursorPos($initialPos.X, $initialPos.Y)
                 Start-Sleep -Milliseconds 1000
-                
                 [System.Windows.Forms.SendKeys]::SendWait("{F15}")
             }
             Write-Host "WM complete."
