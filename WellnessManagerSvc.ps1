@@ -7,13 +7,15 @@ function Show-Toast {
         [string]$Message,
         [string]$Title = "Wellness Manager 1"
     )
-    # Requires the BurntToast module. If not installed, this will fail silently.
     try {
+        # Attempt to use BurntToast
         Import-Module BurntToast -ErrorAction Stop
         $toastImage = "https://raw.githubusercontent.com/szolll/MW1/main/coffee.png"
         New-BurntToastNotification -Text $Message -AppLogo $toastImage -Scenario IncomingCall
     } catch {
-        Write-Host "Toast notification module not found. Message: $Message"
+        # Fallback to MessageBox if BurntToast is not found or fails
+        Add-Type -AssemblyName System.Windows.Forms
+        [System.Windows.Forms.MessageBox]::Show($Message, $Title)
     }
 }
 
