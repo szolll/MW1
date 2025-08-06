@@ -71,27 +71,27 @@ function Wiggle-Mouse {
     try {
         if ($duration -lt 0) { throw "Duration must be non-negative" }
         $screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-        $initialPos = [System.Windows.Forms.Cursor]::Position
         $endTime = if ($duration -eq 0) { [DateTime]::MaxValue } else { (Get-Date).AddSeconds($duration) }
         Write-Host "Wiggling mouse to prevent screen lock (Ctrl+C to stop)..."
         try {
             while ((Get-Date) -lt $endTime) {
-                $currentPos = [System.Windows.Forms.Cursor]::Position
-                $newX = if ($currentPos.X + 1 -ge $screen.Width) { $currentPos.X - 1 } else { $currentPos.X + 1 }
-                [void][Mouse]::SetCursorPos($newX, $currentPos.Y)
-                Start-Sleep -Milliseconds 1000
+                $preMovePos = [System.Windows.Forms.Cursor]::Position
+                Start-Sleep -Seconds 5 # Wait for 5 seconds
 
-                $currentPos = [System.Windows.Forms.Cursor]::Position
-                $newX = if ($currentPos.X - 1 -lt 0) { $currentPos.X + 1 } else { $currentPos.X - 1 }
-                [void][Mouse]::SetCursorPos($newX, $currentPos.Y)
-                Start-Sleep -Milliseconds 1000
-                
-                [System.Windows.Forms.SendKeys]::SendWait("{F15}")
+                $postMovePos = [System.Windows.Forms.Cursor]::Position
+
+                # If the mouse hasn't moved in 5 seconds, wiggle it
+                if ($preMovePos.X -eq $postMovePos.X -and $preMovePos.Y -eq $postMovePos.Y) {
+                    $newX = if ($postMovePos.X + 1 -ge $screen.Width) { $postMovePos.X - 1 } else { $postMovePos.X + 1 }
+                    [void][Mouse]::SetCursorPos($newX, $postMovePos.Y)
+                    [System.Windows.Forms.SendKeys]::SendWait("{F15}")
+                }
+                # If the user moved the mouse, do nothing. The loop will restart
+                # and check again in 5 seconds from the new position.
             }
             Write-Host "WM complete."
         } catch [System.Management.Automation.PSInvalidOperationException] {
             Write-Host "WM stopped by user."
-            [void][Mouse]::SetCursorPos($initialPos.X, $initialPos.Y)
         }
     } catch {
         Write-Host "Error: Invalid duration."
