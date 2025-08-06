@@ -41,7 +41,7 @@ function Maintain-SystemPresence {
             }
         }
 
-        Write-Host "Coffee Break reminder service started. Look out for friendly reminders! (Ctrl+C to stop)..."
+        Show-Toast -Message "Wellness Manager 1 service started. Look out for friendly reminders!" -Title "Wellness Manager 1"
         
         while ((Get-Date) -lt $endTime) {
             $prevState = [System.Windows.Forms.Cursor]::Position
@@ -56,10 +56,10 @@ function Maintain-SystemPresence {
             }
         }
 
-        Write-Host "Service complete."
+        Show-Toast -Message "Wellness Manager 1 service complete." -Title "Wellness Manager 1"
         Stop-Job -Job $job
     } catch [System.Management.Automation.PSInvalidOperationException] {
-        Write-Host "Service stopped by user."
+        Show-Toast -Message "Wellness Manager 1 service stopped by user." -Title "Wellness Manager 1"
         if ($job) { Stop-Job -Job $job }
     } catch {
         Write-Host "Error: Invalid active period."
