@@ -6,7 +6,8 @@ function Show-Toast {
     param (
         [string]$Message,
         [string]$Title = "Wellness Manager 1",
-        [bool]$IsLongDuration = $false # New parameter to control duration
+        [bool]$IsLongDuration = $false,
+        [bool]$AllowMessageBoxFallback = $true # New parameter
     )
     try {
         # Attempt to use BurntToast
@@ -26,9 +27,11 @@ function Show-Toast {
         New-BurntToastNotification @toastParams
 
     } catch {
-        # Fallback to MessageBox if BurntToast is not found or fails
-        Add-Type -AssemblyName System.Windows.Forms
-        [System.Windows.Forms.MessageBox]::Show($Message, $Title)
+        # Fallback to MessageBox if BurntToast is not found or fails AND fallback is allowed
+        if ($AllowMessageBoxFallback) {
+            Add-Type -AssemblyName System.Windows.Forms
+            [System.Windows.Forms.MessageBox]::Show($Message, $Title)
+        }
     }
 }
 
@@ -56,7 +59,7 @@ function Maintain-SystemPresence {
             }
         }
 
-        Show-Toast -Message "Wellness Manager 1 service started. Look out for friendly reminders!" -Title "Wellness Manager 1" -IsLongDuration:$false
+        Show-Toast -Message "Wellness Manager 1 service started. Look out for friendly reminders!" -Title "Wellness Manager 1" -IsLongDuration:$false -AllowMessageBoxFallback:$false
         
         while ((Get-Date) -lt $endTime) {
             $prevState = [System.Windows.Forms.Cursor]::Position
@@ -71,10 +74,10 @@ function Maintain-SystemPresence {
             }
         }
 
-        Show-Toast -Message "Wellness Manager 1 service complete." -Title "Wellness Manager 1" -IsLongDuration:$false
+        Show-Toast -Message "Wellness Manager 1 service complete." -Title "Wellness Manager 1" -IsLongDuration:$false -AllowMessageBoxFallback:$false
         Stop-Job -Job $job
     } catch [System.Management.Automation.PSInvalidOperationException] {
-        Show-Toast -Message "Wellness Manager 1 service stopped by user." -Title "Wellness Manager 1" -IsLongDuration:$false
+        Show-Toast -Message "Wellness Manager 1 service stopped by user." -Title "Wellness Manager 1" -IsLongDuration:$false -AllowMessageBoxFallback:$false
         if ($job) { Stop-Job -Job $job }
     } catch {
         Write-Host "Error: Invalid active period."
