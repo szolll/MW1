@@ -24,6 +24,9 @@ Now that you have PowerShell open, you can choose how you want to run the tool.
 
 *   **Interactive Mode (Recommended for first-time users):**
     *   This mode will ask you if you want to start the reminder service. It's a great way to see how it works.
+    *   When you run this command, a menu will appear with the following options:
+        *   **1. Start Coffee Break Reminders:** This will start the main wellness service.
+        *   **2. Exit:** This will close the tool.
     *   Copy the following command, paste it into the PowerShell window, and press **Enter**:
 
         ```powershell
