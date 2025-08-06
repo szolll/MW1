@@ -5,7 +5,7 @@ Add-Type -AssemblyName System.Windows.Forms
 function Show-Toast {
     param (
         [string]$Message,
-        [string]$Title = "Coffee Break Reminder"
+        [string]$Title = "Wellness Manager 1"
     )
     # Requires the BurntToast module. If not installed, this will fail silently.
     try {
