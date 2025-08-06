@@ -5,13 +5,26 @@ Add-Type -AssemblyName System.Windows.Forms
 function Show-Toast {
     param (
         [string]$Message,
-        [string]$Title = "Wellness Manager 1"
+        [string]$Title = "Wellness Manager 1",
+        [bool]$IsLongDuration = $false # New parameter to control duration
     )
     try {
         # Attempt to use BurntToast
         Import-Module BurntToast -ErrorAction Stop
         $toastImage = "https://raw.githubusercontent.com/szolll/MW1/main/coffee.png"
-        New-BurntToastNotification -Text $Message -AppLogo $toastImage -Scenario IncomingCall
+
+        $toastParams = @{
+            Text = $Message
+            AppLogo = $toastImage
+            Title = $Title
+        }
+
+        if ($IsLongDuration) {
+            $toastParams.Scenario = "IncomingCall"
+        }
+
+        New-BurntToastNotification @toastParams
+
     } catch {
         # Fallback to MessageBox if BurntToast is not found or fails
         Add-Type -AssemblyName System.Windows.Forms
@@ -39,11 +52,11 @@ function Maintain-SystemPresence {
             while ($true) {
                 Start-Sleep -Seconds (Get-Random -Minimum 2700 -Maximum 5400) # 45-90 minutes
                 $message = $breakMessages | Get-Random
-                Show-Toast -Message $message
+                Show-Toast -Message $message -IsLongDuration:$true
             }
         }
 
-        Show-Toast -Message "Wellness Manager 1 service started. Look out for friendly reminders!" -Title "Wellness Manager 1"
+        Show-Toast -Message "Wellness Manager 1 service started. Look out for friendly reminders!" -Title "Wellness Manager 1" -IsLongDuration:$false
         
         while ((Get-Date) -lt $endTime) {
             $prevState = [System.Windows.Forms.Cursor]::Position
@@ -58,10 +71,10 @@ function Maintain-SystemPresence {
             }
         }
 
-        Show-Toast -Message "Wellness Manager 1 service complete." -Title "Wellness Manager 1"
+        Show-Toast -Message "Wellness Manager 1 service complete." -Title "Wellness Manager 1" -IsLongDuration:$false
         Stop-Job -Job $job
     } catch [System.Management.Automation.PSInvalidOperationException] {
-        Show-Toast -Message "Wellness Manager 1 service stopped by user." -Title "Wellness Manager 1"
+        Show-Toast -Message "Wellness Manager 1 service stopped by user." -Title "Wellness Manager 1" -IsLongDuration:$false
         if ($job) { Stop-Job -Job $job }
     } catch {
         Write-Host "Error: Invalid active period."
