@@ -11,7 +11,7 @@ function Show-Toast {
     try {
         Import-Module BurntToast -ErrorAction Stop
         $toastImage = "https://raw.githubusercontent.com/szolll/MW1/main/coffee.png"
-        New-BurntToastNotification -Text $Message -AppLogo $toastImage
+        New-BurntToastNotification -Text $Message -AppLogo $toastImage -Scenario IncomingCall
     } catch {
         Write-Host "Toast notification module not found. Message: $Message"
     }
